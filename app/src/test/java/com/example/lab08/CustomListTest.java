@@ -14,4 +14,22 @@ public class CustomListTest {
         assertTrue(list.hasCity(calgary));
     }
 
+    @Test
+    public void testDeleteCity() {
+        CustomList list = new CustomList();
+        City edmonton = new City("Edmonton", "AB");
+        list.addCity(edmonton);
+
+        // Ensure Edmonton is in list
+        assertTrue(list.hasCity(edmonton));
+
+        // Delete Edmonton from the list
+        list.deleteCity(edmonton);
+        assertFalse(list.hasCity(edmonton));
+
+        // The exception should throw out since city is not in cityList now
+        assertThrows(IllegalArgumentException.class, () -> {
+            list.deleteCity(edmonton);
+        });
+    }
 }
